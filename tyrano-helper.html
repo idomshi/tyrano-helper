@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title>tyrano helper</title>
+  <script src="https://unpkg.com/vue@next"></script>
+</head>
+
+<body>
+<!-- ====================================================================== -->
+  <div id="app">
+    <textarea v-model="inputArea"></textarea>
+    <textarea v-model="outputArea"></textarea>
+  </div>
+  <style>
+  </style>
+  <script type="text/javascript">
+    const TyranoConverter = {
+      components: {},
+      setup() {
+        const inputArea = Vue.ref('')
+        const outputArea = Vue.computed(() => { return inputArea.value.split('\n').map(v => (v.length == 0) ? v : `${v}[l][r]`).join('\n') })
+
+
+        return {
+          inputArea,
+          outputArea,
+        }
+      },
+    }
+
+    Vue.createApp(TyranoConverter).mount('#app')
+  </script>
+</body>
+</html>
