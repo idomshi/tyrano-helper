@@ -41,15 +41,15 @@
           console.log(lines)
           for (const line of lines) {
             let match
-            if (line.length === 0) {console.log('空行'); result.push(line) }
-            else if (match = /^\s*[＜<](.*)[＞>]\s*$/.exec(line)) {console.log('指示'); result.push(`; ${match[1]}`) }
+            if (line.length === 0) { result.push(line) }
+            else if (match = /^\s*[＜<](.*)[＞>]\s*$/.exec(line)) { result.push(`; ${match[1]}`) }
             else if (match = /^\s*([^＜<]+)[「『]([^」』]+)[」』]\s*$/.exec(line)) {
               if (!character.hasOwnProperty(match[1])) {
                 const num = Object.keys(character).length
                 const key = `chara${num}`
                 character[match[1]] = key
               }
-              result.push(`#${character[match[1]]}\n${match[2]}`)
+              result.push(`#${character[match[1]]}\n${match[2]}[l][r]`)
             }
             else { result.push(`${line}[l][r]`) }
           }
